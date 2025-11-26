@@ -1,0 +1,27 @@
+name: Teste CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Instalar dependências
+        run: pip install pytest
+
+      - name: Executar script principal
+        run: python main.py
+
+      - name: Executar testes
+        run: pytest -v
+
